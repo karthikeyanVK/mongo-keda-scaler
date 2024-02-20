@@ -1,0 +1,70 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: mongo-scaledobject
+  namespace: default
+  labels:
+    deploymentName: dummy-mongo
+spec:
+  maxReplicaCount: 5
+  pollingInterval: 5  # Optional. Default: 30 seconds
+  cooldownPeriod:  5 # Optional. Default: 300 seconds
+  scaleTargetRef:
+    name: dummy-mongo
+  triggers:
+    - type: mongodb
+      metadata:
+        host: "10.1.1.1" #expects some number needs to be fixed..
+        port: "27017"
+        dbName: "admin"
+        collection: "scalecollection"
+        query: '{"name":"test"}'
+        queryValue: "2"
+        activationQueryValue: "1"
+      authenticationRef:
+        name: mongodb-local-trigger
+
+---
+
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: mongodb-trigger
+spec:
+  secretTargetRef:
+    - parameter: connectionString
+      name: mongodb-secret
+      key: connect
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-secret
+type: Opaque
+data:
+  connect: bW9uZ29kYjovL2t1YmVrb2NoaTIwMjQ6Rk1YcDhIQWtLRnNLV2pRZXJVQ1ExSHFscERWbFdNTUt2TlBYS3hEUGtHaEtJUFRxZVlkVVhxNUpTZk9CMzJMRVREQUttUGJXWHRYZEFDRGJLUDRXNFE9PUBrdWJla29jaGkyMDI0Lm1vbmdvLmNvc21vcy5henVyZS5jb206MTAyNTUva2VkYWRlbW8/c3NsPXRydWUmcmVwbGljYVNldD1nbG9iYWxkYg==
+
+---
+
+
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: mongodb-local-trigger
+spec:
+  secretTargetRef:
+    - parameter: connectionString
+      name: mongodb-local-secret
+      key: connect
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-local-secret
+type: Opaque
+data:
+  connect: bW9uZ29kYjovL2FkbWluOmFkbWluMTIzQG1vbmdvLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWw6MjcwMTcvYWRtaW4=
