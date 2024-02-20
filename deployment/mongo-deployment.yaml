@@ -20,8 +20,9 @@ spec:
   accessModes:
     - ReadWriteOnce
   resources:
-    requestskubec:
+    requests:
       storage: 1Gi
+
 ---
 apiVersion: v1
 kind: Secret
@@ -57,7 +58,7 @@ spec:
         - containerPort: 27017
         volumeMounts:
         - name: mongo-persistent-storage
-          mountPath: /data/db
+          mountPath: /data/db/mongo
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:

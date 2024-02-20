@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: dummy
-          image: kubeacrchennai.azurecr.io/local/dummy:latest
+          image: kubeacrchennai.azurecr.io/local/app:latest
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:

@@ -13,22 +13,6 @@ func main() {
 		Name:  "app",
 		Usage: "Simple app for a keda related talk",
 		Commands: []cli.Command{
-			{
-				Name:  "app",
-				Usage: "Runs simple http server on 3232",
-				Action: func(c *cli.Context) error {
-					StartWebserver()
-					return nil
-				},
-			},
-			{
-				Name:  "api",
-				Usage: "Runs simple metric API server on 3232",
-				Action: func(c *cli.Context) error {
-					StartAPI()
-					return nil
-				},
-			},
 			//add subcommand for mongo
 			{
 				Name:  "mongo",
