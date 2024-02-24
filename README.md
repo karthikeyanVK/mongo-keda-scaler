@@ -35,7 +35,9 @@ kubectl apply -f keda/mongo-hpa.yaml
 ```
 this should result again in creation of `ScaleObject` and an HPA:
 ```sh
-# kubectl get scaledobjects
+kubectl get scaledobjects
+```
+```sh
 NAME                 SCALETARGETKIND      SCALETARGETNAME   MIN   MAX   TRIGGERS   AUTHENTICATION          READY   ACTIVE   FALLBACK   PAUSED    AGE
 mongo-scaledobject   apps/v1.Deployment   dummy-mongo             5     mongodb    mongodb-local-trigger   True    False    False      Unknown   1d
 ```
