@@ -1,15 +1,14 @@
 # KEDA example
 
 This repository consists of everything you need to setup simple Kubernetes 
-cluster and demonstrate usage of KEDA redis and mysql scalers. For more
+cluster and demonstrate usage of KEDA mongo scalers. For more
 samples check https://github.com/kedacore/samples
 
 The included `helper` provides an easy way to perform both 0 -> n and n -> 0 scalings.  
 
 ## Create cluster
 The deployment consists of 4 components:
-- MySQL instance
-- Redis instance
+- Mongo instance
 - Dummy pod that will be scaled up and down
 - App service that provides some helper methods
 ```sh
@@ -37,10 +36,6 @@ kubectl apply -f keda/mongo-hpa.yaml
 this should result again in creation of `ScaleObject` and an HPA:
 ```sh
 # kubectl get scaledobjects
-NAME                 DEPLOYMENT   TRIGGERS   AGE
-mysql-scaledobject   dummy        redis      5s
-
-# kubectl get hpa
 NAME                 SCALETARGETKIND      SCALETARGETNAME   MIN   MAX   TRIGGERS   AUTHENTICATION          READY   ACTIVE   FALLBACK   PAUSED    AGE
 mongo-scaledobject   apps/v1.Deployment   dummy-mongo             5     mongodb    mongodb-local-trigger   True    False    False      Unknown   1d
 ```
@@ -50,8 +45,11 @@ To do this we can use the helper app:
 ```shell script
 kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mongo insert
 ```
-and to scale down:
+to scale down:
 ```shell script
 kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mongo delete
 ```
-# mongo-keda-scaler
+and to debug scaling of the dummy pod:
+```shell script
+kubectl logs -n keda -l app=keda-operator
+```
