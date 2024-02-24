@@ -29,7 +29,7 @@ func init() {
 	}
 
 	collection = client.Database("admin").Collection("scalecollection")
-	fmt.Println("collection initiated")
+	fmt.Println("collection initiated for mongo")
 }
 
 type TestData struct {

@@ -13,6 +13,22 @@ func main() {
 		Name:  "app",
 		Usage: "Simple app for a keda related talk",
 		Commands: []cli.Command{
+			{
+				Name:  "app",
+				Usage: "Runs simple http server on 3232",
+				Action: func(c *cli.Context) error {
+					StartWebserver()
+					return nil
+				},
+			},
+			{
+				Name:  "api",
+				Usage: "Runs simple metric API server on 3232",
+				Action: func(c *cli.Context) error {
+					StartAPI()
+					return nil
+				},
+			},
 			//add subcommand for mongo
 			{
 				Name:  "mongo",
@@ -20,7 +36,7 @@ func main() {
 				Subcommands: []cli.Command{
 					{
 						Name:  "insert",
-						Usage: "Insert some values to database",
+						Usage: "Insert some values to db",
 						Action: func(c *cli.Context) error {
 							err := InsertMongoData()
 							if err != nil {
@@ -34,7 +50,7 @@ func main() {
 					},
 					{
 						Name:  "delete",
-						Usage: "Delete all records from database",
+						Usage: "Delete all records from db",
 						Action: func(c *cli.Context) error {
 							err := DeleteMongoData()
 							if err != nil {

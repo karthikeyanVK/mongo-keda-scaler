@@ -19,8 +19,8 @@ spec:
         dbName: "admin"
         collection: "scalecollection"
         query: '{"name":"test"}'
-        queryValue: "2"
-        activationQueryValue: "1"
+        queryValue: "1"
+        activationQueryValue: "0"
       authenticationRef:
         name: mongodb-local-trigger
 

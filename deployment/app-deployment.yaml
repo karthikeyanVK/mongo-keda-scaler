@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: master
-          image: kubeacrchennai.azurecr.io/local/app:latest
+          image:  docker.io/karthik3030/mongoscaleserver:latest2
           imagePullPolicy: Always
           args:
             - app
@@ -47,4 +47,4 @@ spec:
               value: "keda-talk"
           resources:
             limits:
-              cpu: "0.1"
+              cpu: "0.3"
