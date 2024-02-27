@@ -19,12 +19,6 @@ kubectl apply -f deployment/
 Follow the official KEDA guide https://keda.sh/deploy/
 
 
-## Observe
-To observe how everything works you can watch two things:
-- number of pods and their state: `watch -n2 "kubectl get pods"`
-- HPA stats: `watch -n2 "kubectl get hpa"`
-
-
 
 ## Mongo example
 To scale the dummy deployment using 
@@ -47,10 +41,16 @@ To do this we can use the helper app:
 ```shell script
 kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mongo insert
 ```
-to scale down:
+to scale down, deleting all the records:
 ```shell script
 kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mongo delete
 ```
+to check pods being scaled:
+```shell script
+kubectl get pods
+```
+
+
 and to debug scaling of the dummy pod:
 ```shell script
 kubectl logs -n keda -l app=keda-operator

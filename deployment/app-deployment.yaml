@@ -40,11 +40,11 @@ spec:
           ports:
             - containerPort: 3232
               name: server
-          env:
-            - name: REDIS_ADDRESS
-              value: "redis:6379"
-            - name: MYSQL_PASSWORD
-              value: "keda-talk"
+          # env:
+          #   - name: REDIS_ADDRESS
+          #     value: "redis:6379"
+          #   - name: MYSQL_PASSWORD
+          #     value: "keda-talk"
           resources:
             limits:
               cpu: "0.3"

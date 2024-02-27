@@ -29,29 +29,6 @@ spec:
 apiVersion: keda.sh/v1alpha1
 kind: TriggerAuthentication
 metadata:
-  name: mongodb-trigger
-spec:
-  secretTargetRef:
-    - parameter: connectionString
-      name: mongodb-secret
-      key: connect
-
----
-
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mongodb-secret
-type: Opaque
-data:
-  connect: bW9uZ29kYjovL2t1YmVrb2NoaTIwMjQ6Rk1YcDhIQWtLRnNLV2pRZXJVQ1ExSHFscERWbFdNTUt2TlBYS3hEUGtHaEtJUFRxZVlkVVhxNUpTZk9CMzJMRVREQUttUGJXWHRYZEFDRGJLUDRXNFE9PUBrdWJla29jaGkyMDI0Lm1vbmdvLmNvc21vcy5henVyZS5jb206MTAyNTUva2VkYWRlbW8/c3NsPXRydWUmcmVwbGljYVNldD1nbG9iYWxkYg==
-
----
-
-
-apiVersion: keda.sh/v1alpha1
-kind: TriggerAuthentication
-metadata:
   name: mongodb-local-trigger
 spec:
   secretTargetRef:

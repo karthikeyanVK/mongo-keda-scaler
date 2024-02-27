@@ -16,6 +16,7 @@ var ctx = context.TODO()
 
 func init() {
 	fmt.Println("init called")
+	// Change the connection string to your MongoDB connection string.
 	clientOptions := options.Client().ApplyURI("mongodb://admin:admin123@mongo.default.svc.cluster.local:27017/")
 	client, err := mongo.Connect(ctx, clientOptions)
 	fmt.Println("connection established")

@@ -26,10 +26,10 @@ spec:
               exec:
                 command:
                   - pkill -f "sleep"
-          env:
-            - name: REDIS_ADDRESS
-              value: "redis.default:6379"
-            - name: MYSQL_PASSWORD
-              value: "keda-talk"
-            - name: MYSQL_CONN
-              value: "root@tcp(mysql:3306)/mysql"
+          # env:
+          #   - name: REDIS_ADDRESS
+          #     value: "redis.default:6379"
+          #   - name: MYSQL_PASSWORD
+          #     value: "keda-talk"
+          #   - name: MYSQL_CONN
+          #     value: "root@tcp(mysql:3306)/mysql"
