@@ -41,15 +41,16 @@ To do this we can use the helper app:
 ```shell script
 kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mongo insert
 ```
-to scale down, deleting all the records:
-```shell script
-kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mongo delete
-```
+
 to check pods being scaled:
 ```shell script
 kubectl get pods
 ```
 
+to scale down, delete all the records:
+```shell script
+kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mongo delete
+```
 
 and to debug scaling of the dummy pod:
 ```shell script
